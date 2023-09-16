@@ -1,14 +1,14 @@
 ---
 title: condaを愛用してきた学生が社会に出てcondaを卒業しpip+venvに乗り換えるまで
 tags:
-  - 'Python'
-  - 'Anaconda'
-  - 'pip'
-  - 'venv'
-  - '新卒エンジニア'
+  - Python
+  - pip
+  - Anaconda
+  - 新卒エンジニア
+  - venv
 private: true
-updated_at: ''
-id: null
+updated_at: '2023-09-16T19:30:07+09:00'
+id: 1ead4603ad04950f1bdc
 organization_url_name: null
 slide: false
 ---
