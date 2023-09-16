@@ -6,7 +6,7 @@ tags:
   - 'pip'
   - 'venv'
   - '新卒エンジニア'
-private: true
+private: false
 updated_at: ''
 id: null
 organization_url_name: null
