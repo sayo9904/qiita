@@ -7,7 +7,7 @@ tags:
   - 新卒エンジニア
   - venv
 private: false
-updated_at: '2023-09-16T19:41:36+09:00'
+updated_at: '2023-09-18T00:20:37+09:00'
 id: b877e9b1509fdca5004c
 organization_url_name: null
 slide: false
