@@ -85,7 +85,8 @@ Docstringはクラスやメソッドに付ける説明文のようなもので�
 
 さらに、forgeground から文字色も確認することができます。
 一気に目当ての情報に近づくことができましたね。
-![エディタ上でTokenやScopeを確認する様子](./images/HowToCustomizeDocstringFontColorInVscode/EditorTokensAndScopes.png)
+
+![エディタ上でTokenやScopeを確認する様子](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3557028/4f730feb-f3ef-93e2-ba6c-348613d26480.png)
 
 
 ## ユーザー設定を書き換える
