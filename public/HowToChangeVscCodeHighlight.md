@@ -1,13 +1,14 @@
 ---
 title: VSCodeでコードハイライトの色を自由自在に変更する方法
 tags:
-  - 'VSCode'
-  - '環境設定'
+  - 環境設定
+  - VSCode
 private: false
-updated_at: ''
-id: null
+updated_at: '2024-03-30T00:54:40+09:00'
+id: 7e0b4d873928227ae4de
 organization_url_name: null
 slide: false
+ignorePublish: false
 ---
 ## 想定読者
 - VSCodeのコードハイライトに不満がある人
