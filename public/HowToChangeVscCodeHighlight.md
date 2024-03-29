@@ -22,13 +22,13 @@ Docstringはクラスやメソッドに付ける説明文のようなもので�
 たとえば私の愛用する GitHub Dark テーマでは以下のように、コメントアウトはグレーの文字色なのに対し、Docstringと文字列リテラルは同じ水色で表示されています。
 
 今回はコードハイライトを自由に設定する方法の例として、PythonのDocstringをコメントアウトと同じグレーに変えていく方法を紹介します。
-![GitHub Darkテーマのデフォルトのコードハイライト](./images/HowToCustomizeDocstringFontColorInVscode/sampleCode.png)
+![GitHub Darkテーマのデフォルトのコードハイライト](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3557028/6c4a7f7b-c5c3-7421-5e58-1a2666d9745d.png)
 
 
 ## 文字色はどのように管理されているのか
 コマンドパレットから `Developer: Generate Color Theme From Current Settings` を選択することで、
 現在のVSCode上のすべてのカラー設定を確認することができます。
-![コマンドパレットで「現在の設定から配色テーマを生成する」を検索する様子](./images/HowToCustomizeDocstringFontColorInVscode/GenerateColorTheme.png)
+![コマンドパレットで「現在の設定から配色テーマを生成する」を検索する様子](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3557028/cbc0a4b7-fa86-6fd0-2682-60fc14ccac0f.png)
 
 新たに開いたファイルの下の方へ行くと `tokenColors` というブロックがあります。
 この中に `scope` というkeyとそれに対応するカラーコードが記載されています。
@@ -75,7 +75,7 @@ Docstringはクラスやメソッドに付ける説明文のようなもので�
 
 ## コード上のscopeの確認
 コマンドパレットから `Developer: Inspect Editor Tokens and Scopes` を選択しましょう。
-![コマンドパレットから「トークンとスコープの検査」を検索している様子](./images/HowToCustomizeDocstringFontColorInVscode/InspectEditorTokens.png)
+![コマンドパレットから「トークンとスコープの検査」を検索している様子](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3557028/4ce4bed3-1e3d-138e-116e-819a58f03655.png)
 
 その後エディタに戻って何か適当な箇所にカーソルを当ててみましょう。
 すると、そのセグメントをエディタがどのように解釈しているかという情報を見ることができるはずです。
@@ -114,7 +114,7 @@ source.python
 ```
 すると、、、あれ？
 Docstringの文の部分は色が変わりましたが、前後のクォーテーションがまだ変わっていませんね。
-![Docstringsの文部分だけ色が変わった様子](./images/HowToCustomizeDocstringFontColorInVscode/colorChanged.png)
+![Docstringsの文部分だけ色が変わった様子](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3557028/5be5752b-9388-b25c-4690-62963dc733c5.png)
 
 クォーテーションについてもscopeを調べてみましょう。文の前後で `begin` `end` の違いはありますが以下のようになっているでしょう。
 ```text:Docstringの前クォーテーションのscope
@@ -150,7 +150,7 @@ source.python
 
 ようやく求めていたカラーリングにすることができました！
 Docstring部分はコメントアウトと同じグレーになりつつも、文字列リテラルは元の水色のままになっています。
-![Docstringのクォーテーションも色を変えられた](./images/HowToCustomizeDocstringFontColorInVscode/colorChangedAll.png)
+![Docstringのクォーテーションも色を変えられた](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3557028/715dba13-2c06-48ce-e8dc-472eb12ab21d.png)
 
 ## さいごに
 今回はPythonのDocstringを例にしてVSCodeのセグメントを自由に色変えする方法を紹介しました。
