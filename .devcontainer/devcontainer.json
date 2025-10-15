@@ -11,7 +11,7 @@
         "esbenp.prettier-vscode",
         "yzhang.markdown-all-in-one",
         "mushan.vscode-paste-image",
-        "takuya-ozawa.vscode-qiita-markdown-preview"
+        "ryokat3.vscode-qiita-markdown-preview"
       ],
       "settings": {
         "editor.tabSize": 2,
