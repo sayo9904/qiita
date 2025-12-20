@@ -1,5 +1,5 @@
 ---
-title: APIサーバー + RDB + オブジェクトストレージの開発環境をdevcontainerで実現する
+title: APIサーバー + RDBの開発環境をdevcontainerで実現する
 tags:
   - "devcontainer"
   - docker
