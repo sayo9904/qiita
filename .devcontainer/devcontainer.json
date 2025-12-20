@@ -3,7 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postStartCommand": "npm install",
+  "postStartCommand": "npm install && npx qiita pull",
   "remoteUser": "node",
   "customizations": {
     "vscode": {
@@ -11,9 +11,11 @@
         "esbenp.prettier-vscode",
         "yzhang.markdown-all-in-one",
         "mushan.vscode-paste-image",
-        "ryokat3.vscode-qiita-markdown-preview"
+        "ryokat3.vscode-qiita-markdown-preview",
+        "Increments.qiita"
       ],
       "settings": {
+        "workbench.colorTheme": "Qiita",
         "editor.tabSize": 2,
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,

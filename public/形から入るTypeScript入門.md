@@ -1,29 +1,31 @@
 ---
 title: 形から入るTypeScript入門
 tags:
-  - 'TypeScript'
-  - 'npm'
-  - 'VSCode'
+  - "TypeScript"
+  - "npm"
+  - "VSCode"
 private: true
-updated_at: ''
+updated_at: ""
 id: null
 organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 ## 想定読者
 
-## TypeScriptを始めよう
+## TypeScript を始めよう
 
 ## 言語環境の構築
-### node.jsのインストール
 
-### npmのチェック
+### node.js のインストール
+
+### npm のチェック
 
 ## エディタ環境の構築
-### VSCodeのインストール
+
+### VSCode のインストール
 
 ### カラーテーマなどの設定
 
-### Prettierの設定
-
+### Prettier の設定
