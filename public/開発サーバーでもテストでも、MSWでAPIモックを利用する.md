@@ -7,46 +7,38 @@ tags:
   - msw
   - Vitest
 private: false
-updated_at: "2025-12-09T00:42:47+09:00"
+updated_at: '2025-12-09T00:42:47+09:00'
 id: d1175d9d2cfd1ed92e60
 organization_url_name: null
 slide: false
 ignorePublish: false
 ---
-
 ## この記事は何？
+- ReactプロジェクトにMSWを導入して、バックエンドの開発が進んでいないプロジェクトでも、まるでAPIサーバーがあるかのように実行できる環境を作る
+- VitestでAPIのモックを作成をしなくても動くようにする
 
-- React プロジェクトに MSW を導入して、バックエンドの開発が進んでいないプロジェクトでも、まるで API サーバーがあるかのように実行できる環境を作る
-- Vitest で API のモックを作成をしなくても動くようにする
+## MSW導入の動機
+バックエンド(APIサーバー)の開発や通信の設定が済んでいないタイミングでフロントエンドのvite開発サーバーを起動したとき、APIのエンドポイントが無いために表示がエラーになり、開発がうまく進んでいかないというシチュエーションがありました。
 
-## MSW 導入の動機
+こんな時、開発サーバーからのAPIリクエストを受け取ってくれるAPIサーバーがあると非常に便利です。
+このような仕組みとして、json-serverのようなものもありますが、明示的に起動をする必要があるのが少し面倒です。devcontainerであればdocker-composeを作成することで手間は省けますが、常にコンテナが起動していてリソースの心配がある、dockerNWの設定に気を使う必要があるなどの理由でしっくり来ていませんでした。
 
-バックエンド(API サーバー)の開発や通信の設定が済んでいないタイミングでフロントエンドの vite 開発サーバーを起動したとき、API のエンドポイントが無いために表示がエラーになり、開発がうまく進んでいかないというシチュエーションがありました。
+今回導入するMSWはそんな問題を一気に解決してくれるAPIモックのソリューションです。
+viteの開発サーバーを起動すると同時にモックサーバーも立ち上がる、レスポンスの出し分けのロジックを書くことができるなど、機能は十分に充実しています。
 
-こんな時、開発サーバーからの API リクエストを受け取ってくれる API サーバーがあると非常に便利です。
-このような仕組みとして、json-server のようなものもありますが、明示的に起動をする必要があるのが少し面倒です。devcontainer であれば docker-compose を作成することで手間は省けますが、常にコンテナが起動していてリソースの心配がある、dockerNW の設定に気を使う必要があるなどの理由でしっくり来ていませんでした。
 
-今回導入する MSW はそんな問題を一気に解決してくれる API モックのソリューションです。
-vite の開発サーバーを起動すると同時にモックサーバーも立ち上がる、レスポンスの出し分けのロジックを書くことができるなど、機能は十分に充実しています。
-
-## MSW の導入
-
+## MSWの導入
 以下でインストールを実行し、依存関係に追加します。
-
 ```bash
 yarn add -D msw
 ```
 
 ## 開発サーバーで動くようにする
-
 ### 1. 環境設定
-
 以下のコマンドを実行して、モックの起動を有効にします。
-
 ```bash
 npx msw init public/ --save
 ```
-
 `public/mockServiceWorker.js` が自動生成されるほか、`packages.json` への設定も追加されます。
 
 :::note info
@@ -55,12 +47,10 @@ npx msw init public/ --save
 :::
 
 ### 2. サーバー設定
-
 :::note info
-以下では `src/mocks/` 以下に MSW 関連のファイルを配置していきます
+以下では `src/mocks/` 以下にMSW関連のファイルを配置していきます
 :::
 以下のファイルを作成する。
-
 ```typescript:src/mocks/browser.ts
 import { setupWorker } from 'msw/browser';
 import { handlers } from './handlers.ts';
@@ -79,8 +69,7 @@ export const handlers = [
 ];
 ```
 
-以下は MSW の API サーバーとしての具体的な設定内容になるので、参考程度にご覧ください。
-
+以下はMSWのAPIサーバーとしての具体的な設定内容になるので、参考程度にご覧ください。
 ```typescript:src/mocks/handlers/user.ts
 import { http, HttpResponse } from 'msw';
 import type { User } from '@/shared/types/User';
@@ -141,10 +130,9 @@ export const userHandlers = [
 ];
 ```
 
+
 ### 3. 実際に呼び出してみる
-
-`main.tsx` で、開発環境実行時に MSW を呼ぶように設定します。
-
+`main.tsx` で、開発環境実行時にMSWを呼ぶように設定します。
 ```diff_tsx:src/main.tsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -155,11 +143,11 @@ import Home from '@/pages/home/home.tsx';
 +   if (!import.meta.env.DEV) {
 +     return;
 +   }
-+
++ 
 +   const { worker } = await import('@/mocks/browser');
 +   await worker.start({ onUnhandledRequest: 'bypass' }); //外部APIはモックせず普通に叩く
 + }
-+
++ 
 + enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -169,8 +157,7 @@ import Home from '@/pages/home/home.tsx';
 + });
 ```
 
-以下のような api 定義を作成してコンポーネントで `getUsers()` を呼び出すことで json レスポンスを受け取ることができます。
-
+以下のようなapi定義を作成してコンポーネントで `getUsers()` を呼び出すことでjsonレスポンスを受け取ることができます。
 ```typescript:src/feature/user/api/getUsers.ts
 export const getUsers = async () => {
   const response = await axios.get<userResponse>(
@@ -181,12 +168,10 @@ export const getUsers = async () => {
 };
 ```
 
-## テストで MSW を使えるようにする
 
+## テストでMSWを使えるようにする
 ### 1. コンフィグ設定
-
-`vitest.config.ts` に以下のような設定を追加して、すべてのテストで MSW が設定されている状態になるようにします。
-
+`vitest.config.ts` に以下のような設定を追加して、すべてのテストでMSWが設定されている状態になるようにします。
 ```typescript:vitest.config.ts
 import '@testing-library/jest-dom/vitest';
 import { beforeAll, afterAll, afterEach } from 'vitest';
@@ -210,9 +195,7 @@ afterAll(() => {
 ```
 
 ### 2. サーバー設定
-
 開発サーバーの設定で追加した `handlers.ts` に加え、以下を作成します。
-
 ```typescript:src/mocks/server.ts
 import { setupServer } from 'msw/node';
 import { handlers } from './handlers.ts';
@@ -222,36 +205,35 @@ export const server = setupServer(...handlers);
 
 :::note info
 ここでは開発サーバー用の設定で使ったものと同じハンドラーを使うようにしています。
-テスト用の独自の API エンドポイントを利用したい場合などには、この `server.ts` で呼び出す handlers を `browser.ts` と共通化せず、独自に追加してください。
+テスト用の独自のAPIエンドポイントを利用したい場合などには、この `server.ts` で呼び出すhandlersを `browser.ts` と共通化せず、独自に追加してください。
 :::
 
 ### 3. テストから呼び出してみる
-
-特に記載をする必要はありません。テスト実行時に MSW サーバーも自動的に立ち上がり、API リクエストは MSW に自動的に流れます。
+特に記載をする必要はありません。テスト実行時にMSWサーバーも自動的に立ち上がり、APIリクエストはMSWに自動的に流れます。
 
 :::note info
-自論ですが、API の正常系 UT では MSW モックを利用する価値はあまりないと考えています。API の UT では、「仕様通りのエンドポイントにリクエストを飛ばしていること」などを確認するべきで、どのようなデータが返ってきているかは API サーバー側の API テストの責任ではないかと思います。
+自論ですが、APIの正常系UTではMSWモックを利用する価値はあまりないと考えています。APIのUTでは、「仕様通りのエンドポイントにリクエストを飛ばしていること」などを確認するべきで、どのようなデータが返ってきているかはAPIサーバー側のAPIテストの責任ではないかと思います。
 
-このような場合には MSW は利用せず、UT ファイル内で `vi.mocked(axios.get)` などを使ってリクエストそのものをモック化し、`axios.get` が呼び出されたか？どこにリクエストしたか？を確認するようにしてください。
+このような場合にはMSWは利用せず、UTファイル内で `vi.mocked(axios.get)` などを使ってリクエストそのものをモック化し、`axios.get` が呼び出されたか？どこにリクエストしたか？を確認するようにしてください。
 
-なお、MSW を使わないようにする場合には、個別に何か記載をする必要はありません。`vi.mocked()` は node 環境内で完結する動きであり、NW レイヤーで動く MSW に到達する前に処理されるからです。
+なお、MSWを使わないようにする場合には、個別に何か記載をする必要はありません。`vi.mocked()` はnode環境内で完結する動きであり、NWレイヤーで動くMSWに到達する前に処理されるからです。
 :::
 
+
 ## 最後に
+実は今回、趣味としては初めて本腰を入れてフロントエンド開発を始めてみました。開発環境・開発体験の改善に興味があり、MSWにたどり着きました。
+json-serverは知っていましたが、本文中でも述べた通り開発環境の作り方にやや不満があり採用しませんでした。
+MSWはNWレイヤーで動くためAPレイヤーでの特別な設定が不要で、しかも本来は存在しないはずのエンドポイントへのリクエストを横取りして処理してくれるので、APIサーバーに関して特別考えることなく開発を進めることができ、今のところ非常に体験が良いです。
 
-実は今回、趣味としては初めて本腰を入れてフロントエンド開発を始めてみました。開発環境・開発体験の改善に興味があり、MSW にたどり着きました。
-json-server は知っていましたが、本文中でも述べた通り開発環境の作り方にやや不満があり採用しませんでした。
-MSW は NW レイヤーで動くため AP レイヤーでの特別な設定が不要で、しかも本来は存在しないはずのエンドポイントへのリクエストを横取りして処理してくれるので、API サーバーに関して特別考えることなく開発を進めることができ、今のところ非常に体験が良いです。
+若干話は逸れますが、突き詰めるとviteの開発サーバーのホットリロードに頼りきりではなく、storybookなどの導入を進めるべきなのかなとも思っています。
+storybookとMSWの連携方法についても、機会があればまとめたいと思います。
 
-若干話は逸れますが、突き詰めると vite の開発サーバーのホットリロードに頼りきりではなく、storybook などの導入を進めるべきなのかなとも思っています。
-storybook と MSW の連携方法についても、機会があればまとめたいと思います。
+
 
 ## 参考資料
-
-1. [【MSW 公式】Quick start](https://mswjs.io/docs/quick-start)
-2. [Vitest で API 通信のモックはどうしてる？主要 3 パターン（vi.mock / MSW / Query キャッシュ）を比較・使い分け](https://zenn.dev/apple_yagi/articles/0544ef8258b6d7)
+1. [【MSW公式】Quick start](https://mswjs.io/docs/quick-start)
+2. [Vitest で API 通信のモックはどうしてる？主要3パターン（vi.mock / MSW / Queryキャッシュ）を比較・使い分け](https://zenn.dev/apple_yagi/articles/0544ef8258b6d7)
 
 ## special thanks
-
 1. Gemini 3.0 Pro
 2. GPT-5.1-Codex
