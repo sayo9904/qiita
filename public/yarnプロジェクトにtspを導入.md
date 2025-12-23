@@ -73,10 +73,10 @@ yarn add -D @typespec/compiler
 
 コマンド終了後、`package.json` が自動的に更新されます。
 
-```json:package.json
+```diff_json:package.json
 {
   "devDependencies": {
-+  "@typespec/compiler": "^1.7.1",
++ "@typespec/compiler": "^1.7.1",
   }
 }
 ```
@@ -112,8 +112,8 @@ git restore .gitignore
 
 元に戻したうえで、以下を追加しておくとなお良いです。
 
-```.gitignore:.gitignore
-+tsp-output
+```diff_toml:.gitignore
++ tsp-output
 ```
 
 ### 5. `package-lock.json` を削除する
@@ -155,14 +155,14 @@ git restore package.json
 戻したら、今度は手書きで 依存関係を追加します。先ほどメモった 5 つを書き入れましょう。
 私の場合は例によって devDependancies に入れています。
 
-```json:package.json
+```diff_json:package.json
 {
   "devDependencies": {
-+    "@typespec/compiler": "latest",
-+    "@typespec/http": "latest",
-+    "@typespec/rest": "latest",
-+    "@typespec/openapi": "latest",
-+    "@typespec/openapi3": "latest"
++   "@typespec/compiler": "latest",
++   "@typespec/http": "latest",
++   "@typespec/rest": "latest",
++   "@typespec/openapi": "latest",
++   "@typespec/openapi3": "latest"
   }
 }
 ```
@@ -174,9 +174,9 @@ git restore package.json
 このまま `tsp` コマンドを再度実行すると動きませんので、`package.json` に以下の 1 行を追加します。
 こうすることで `yarn tsp {サブコマンド}` を実行したときに裏でも `yarn` が動いてくれるようになります。
 
-```json:package.json
+```diff_json:package.json
 {
-+  "packageManager": "yarn@1.22.22",
++ "packageManager": "yarn@1.22.22",
 }
 ```
 
