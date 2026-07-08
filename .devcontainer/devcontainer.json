@@ -5,6 +5,7 @@
   },
   "postStartCommand": "npm install && cat secret | npx qiita login && npx qiita pull",
   "remoteUser": "node",
+  "forwardPorts": [8888],
   "customizations": {
     "vscode": {
       "extensions": [

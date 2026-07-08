@@ -4,6 +4,7 @@ RUN apt update && apt install -y \
     locales \
     git\
     sudo \
+    tree \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
