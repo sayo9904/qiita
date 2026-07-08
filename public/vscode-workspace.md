@@ -1,12 +1,12 @@
 ---
 title: VSCode の Workspace で task を使おう
 tags:
-  - "VSCode"
-  - "環境設定"
+  - 環境設定
+  - VSCode
 private: false
-updated_at: ""
+updated_at: "2026-07-09T00:51:48+09:00"
+id: 0a048c025695ebf5dc5b
 organization_url_name: null
-id: null
 slide: false
 ignorePublish: false
 posting_campaign_uuid: null

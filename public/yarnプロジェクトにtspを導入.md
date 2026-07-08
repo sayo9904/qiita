@@ -1,16 +1,18 @@
 ---
 title: yarnプロジェクトにtypespecを導入する
 tags:
-  - "yarn"
-  - "typespec"
-  - "tsp"
-  - "環境構築"
+  - 環境構築
+  - YARN
+  - TSP
+  - TypeSpec
 private: false
-updated_at: ""
-id: null
+updated_at: "2026-07-09T00:51:48+09:00"
+id: 1a831e85a3ce1425835c
 organization_url_name: null
 slide: false
 ignorePublish: false
+posting_campaign_uuid: null
+agreed_posting_campaign_term: false
 ---
 
 ## この記事は何？
