@@ -4,7 +4,7 @@ tags:
   - 環境設定
   - VSCode
 private: false
-updated_at: "2026-07-09T00:51:48+09:00"
+updated_at: '2026-07-09T00:51:48+09:00'
 id: 0a048c025695ebf5dc5b
 organization_url_name: null
 slide: false

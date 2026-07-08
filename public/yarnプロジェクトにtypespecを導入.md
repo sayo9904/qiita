@@ -6,7 +6,7 @@ tags:
   - TSP
   - TypeSpec
 private: false
-updated_at: "2026-07-09T00:51:48+09:00"
+updated_at: '2026-07-09T00:51:48+09:00'
 id: 1a831e85a3ce1425835c
 organization_url_name: null
 slide: false
