@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@qiita/qiita-cli": "^1.7.0"
+    "@qiita/qiita-cli": "^1.9.0"
   },
   "scripts": {
     "new": "qiita new $npm_config_title",

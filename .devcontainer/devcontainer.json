@@ -3,7 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postStartCommand": "npm install && npx qiita pull",
+  "postStartCommand": "npm install && cat secret | npx qiita login && npx qiita pull",
   "remoteUser": "node",
   "customizations": {
     "vscode": {
@@ -12,7 +12,9 @@
         "yzhang.markdown-all-in-one",
         "mushan.vscode-paste-image",
         "ryokat3.vscode-qiita-markdown-preview",
-        "Increments.qiita"
+        "Increments.qiita",
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions"
       ],
       "settings": {
         "workbench.colorTheme": "Qiita",

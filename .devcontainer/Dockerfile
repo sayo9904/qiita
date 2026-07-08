@@ -1,4 +1,4 @@
-FROM node:24
+FROM node:26
 
 RUN apt update && apt install -y \
     locales \
@@ -6,7 +6,6 @@ RUN apt update && apt install -y \
     sudo \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
-    
 
 RUN sed -i -e 's/# \(ja_JP.UTF-8\)/\1/' /etc/locale.gen \
     && locale-gen \
