@@ -12,6 +12,8 @@ id: d1175d9d2cfd1ed92e60
 organization_url_name: null
 slide: false
 ignorePublish: false
+posting_campaign_uuid: null
+agreed_posting_campaign_term: false
 ---
 ## この記事は何？
 - ReactプロジェクトにMSWを導入して、バックエンドの開発が進んでいないプロジェクトでも、まるでAPIサーバーがあるかのように実行できる環境を作る
