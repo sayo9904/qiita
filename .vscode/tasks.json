@@ -1,0 +1,10 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "synchronize qiita web and git repository",
+      "type": "shell",
+      "command": "git add . && git commit -m '[skip ci] auto sync' && git push"
+    }
+  ]
+}
